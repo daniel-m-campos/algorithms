@@ -70,24 +70,6 @@ def sorted_scc(scc_result):
     return sorted(scc_result.values(), reverse=True)
 
 
-# def find_scc_old(graph):
-#     n = len(graph)
-#     t_graph = transpose(graph)
-#     rt_graph = reverse(t_graph)
-#     rev_result = depth_first_search2(rt_graph)
-#     finish_times = {
-#         i: rev_result[i]["finish_time"]
-#         for i in range(1, n + 1)
-#     }
-#     sorted_graph = {
-#         finish_times[node]: [finish_times[e] for e in adjs]
-#         for node, adjs in graph.items()
-#     }
-#     graph_t = transpose(sorted_graph)
-#     result = depth_first_search2(reverse(graph_t))
-#     return Counter((node['start_time'] for node in result.values()))
-
-
 def to_graph(text, delimiter=","):
     edges = (t for t in text.split(delimiter) if t != "")
     edges = (e.split(" ") for e in edges)
