@@ -4,7 +4,7 @@ import graphs
 
 
 class TestGraphs(TestCase):
-    def test_morning_topolical_sort(self):
+    def test_morning_topological_sort(self):
         plan = {
             7: [6, 8],
             3: [],
