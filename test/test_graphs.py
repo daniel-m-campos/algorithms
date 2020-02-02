@@ -22,7 +22,7 @@ class TestGraphs(TestCase):
         self.assertListEqual(actual, expected)
 
 
-class TestsSCC(TestCase):
+class TestSCC(TestCase):
     def test_1(self):
         test = "1 4,2 8,3 6,4 7,5 2,6 9,7 1,8 5,8 6,9 7,9 3"
         test = graphs.to_graph(test)
@@ -56,9 +56,12 @@ class TestsSCC(TestCase):
         self.assertListEqual(actual, expected)
 
     def test_5(self):
-        test = "1 2,2 3,2 4,2 5,3 6,4 5,4 7,5 2,5 6,5 7,6 3,6 8,7 8,7 10,8 7,9 7,10 9,10 11,11 12,12 10,"
+        test = "1 2,2 3,2 4,2 5,3 6,4 5,4 7,5 2,5 6,5 7,6 3,6 8,7 8,7 10,8 7,9 7,10 9,10 11,11 12,12 10"
         test = graphs.to_graph(test)
         result = graphs.find_scc(test)
         actual = graphs.sorted_scc(result)
         expected = [6, 3, 2, 1]
         self.assertListEqual(actual, expected)
+
+
+
