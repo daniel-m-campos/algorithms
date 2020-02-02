@@ -66,6 +66,10 @@ def find_scc(graph):
     return Counter((node["finish_time"] for node in result2.values()))
 
 
+def sorted_scc(scc_result):
+    return sorted(scc_result.values(), reverse=True)
+
+
 # def find_scc_old(graph):
 #     n = len(graph)
 #     t_graph = transpose(graph)
@@ -84,8 +88,8 @@ def find_scc(graph):
 #     return Counter((node['start_time'] for node in result.values()))
 
 
-def to_graph(text):
-    edges = (t for t in text.split("\n") if t != "")
+def to_graph(text, delimiter=","):
+    edges = (t for t in text.split(delimiter) if t != "")
     edges = (e.split(" ") for e in edges)
     edges = ((int(e[0]), int(e[1])) for e in edges)
     graph = defaultdict(list)
