@@ -16,9 +16,9 @@ class TestGraphs(TestCase):
             8: [9],
             9: [],
         }
-        result = graphs.depth_first_search2(plan)
+        result = graphs.recursive_depth_first_search(plan)
         actual = result["topological_sort"]
-        expected = [1, 4, 5, 2, 3, 7, 6, 8, 9]
+        expected = [1, 4, 5, 2, 3, 7, 8, 6, 9]
         self.assertListEqual(actual, expected)
 
 
