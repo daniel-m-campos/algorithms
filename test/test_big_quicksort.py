@@ -18,9 +18,15 @@ class TestBigQuickSort(TestCase):
     def test_size(self):
         self.assertEqual(len(self.big_array), BIG_ARRAY_LEN)
 
-    def test_big_partition_one(self):
+    def big_partition_exam(self, partition_fn):
         counts = [0]
         array = self.big_array.copy()
-        qs.quick_sort(array, 0, BIG_ARRAY_LEN - 1, qs.partition_first, counts)
+        qs.quick_sort(array, 0, BIG_ARRAY_LEN - 1, partition_fn, counts)
         self.assertListEqual(array, self.sorted_big_array)
-        print(counts[0])  # 133056693, 66523347, 158778, 145471, 155432
+        print(counts[0])
+
+    def test_partition_first(self):
+        self.big_partition_exam(qs.partition_first)
+
+    def test_partition_last(self):
+        self.big_partition_exam(qs.partition_last)
