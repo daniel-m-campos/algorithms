@@ -1,5 +1,6 @@
-from unittest import TestCase
 import random
+from unittest import TestCase
+
 import quicksort
 
 
@@ -21,3 +22,4 @@ class TestQuickSort(TestCase):
             self.actual, 0, self.n - 1, quicksort.partition_one, counts
         )
         self.assertTrue(counts[0] > 0)
+        print(counts[0])
