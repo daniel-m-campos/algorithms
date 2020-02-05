@@ -12,9 +12,15 @@ class TestQuickSort(TestCase):
         self.actual = self.expected.copy()
         random.shuffle(self.actual)
 
-    def test_partition_ones(self):
-        quicksort.quick_sort(self.actual, 0, self.n - 1, quicksort.partition_first)
+    def partition_exam(self, partition_fn):
+        quicksort.quick_sort(self.actual, 0, self.n - 1, partition_fn)
         self.assertListEqual(self.actual, self.expected)
+
+    def test_partition_first(self):
+        self.partition_exam(quicksort.partition_first)
+
+    def test_partition_last(self):
+        self.partition_exam(quicksort.partition_last)
 
     def test_counts(self):
         counts = [0]
