@@ -30,3 +30,6 @@ class TestBigQuickSort(TestCase):
 
     def test_partition_last(self):
         self.big_partition_exam(qs.partition_last)
+
+    def test_partition_median(self):
+        self.big_partition_exam(qs.partition_median)

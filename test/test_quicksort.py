@@ -22,6 +22,9 @@ class TestQuickSort(TestCase):
     def test_partition_last(self):
         self.partition_exam(quicksort.partition_last)
 
+    def test_partition_median(self):
+        self.partition_exam(quicksort.partition_median)
+
     def test_counts(self):
         counts = [0]
         quicksort.quick_sort(
@@ -29,3 +32,17 @@ class TestQuickSort(TestCase):
         )
         self.assertTrue(counts[0] > 0)
         print(counts[0])
+
+    def test_median_pivot_even(self):
+        array = [7, 5, 1, 3]
+        n = len(array)
+        actual = quicksort.get_median_index(array, 0, n - 1)
+        expected = 1
+        self.assertEqual(expected, actual)
+
+    def test_median_pivot_odd(self):
+        array = [7, 5, 1, 3, 2]
+        n = len(array)
+        actual = quicksort.get_median_index(array, 0, n - 1)
+        expected = 4
+        self.assertEqual(expected, actual)
