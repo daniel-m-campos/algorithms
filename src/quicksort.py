@@ -1,4 +1,4 @@
-def partition_one(array, left, right):
+def partition_first(array, left, right):
     pivot = array[left]
     i = left + 1
     for j in range(left + 1, right + 1):

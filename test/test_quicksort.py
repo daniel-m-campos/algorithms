@@ -13,13 +13,13 @@ class TestQuickSort(TestCase):
         random.shuffle(self.actual)
 
     def test_partition_ones(self):
-        quicksort.quick_sort(self.actual, 0, self.n - 1, quicksort.partition_one)
+        quicksort.quick_sort(self.actual, 0, self.n - 1, quicksort.partition_first)
         self.assertListEqual(self.actual, self.expected)
 
     def test_counts(self):
         counts = [0]
         quicksort.quick_sort(
-            self.actual, 0, self.n - 1, quicksort.partition_one, counts
+            self.actual, 0, self.n - 1, quicksort.partition_first, counts
         )
         self.assertTrue(counts[0] > 0)
         print(counts[0])
