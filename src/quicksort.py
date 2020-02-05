@@ -10,14 +10,8 @@ def partition_first(array, left, right):
 
 
 def partition_last(array, left, right):
-    pivot = array[right]
-    i = left - 1
-    for j in range(left, right):
-        if array[j] < pivot:
-            i += 1
-            array[i], array[j] = array[j], array[i]
-    array[i + 1], array[right] = array[right], array[i + 1]
-    return i + 1
+    array[left], array[right] = array[right], array[left]
+    return partition_first(array, left, right)
 
 
 def quick_sort(array, left, right, partition_fn, counts=None):
