@@ -8,10 +8,10 @@ def shortest_distance(start, end, graph, distances):
     u = start
     while len(visited) < n:
         visited.append(u)
-        not_visited = (v for v in graph[u] if v not in visited)
+        edges = (e for e in distances if e[0] in visited and e[1] not in visited)
         found = None
         greedy = math.inf
-        for v in not_visited:
+        for u, v in edges:
             new_distance = distance[u] + distances[u, v]
             if new_distance < greedy:
                 greedy = new_distance

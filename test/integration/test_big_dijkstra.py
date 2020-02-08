@@ -1,13 +1,15 @@
 from collections import defaultdict
 from unittest import TestCase
 
+import dijkstra
+
 BIG_GRAPH_LEN = 200
 
 
-def get_data(file="../../../dijkstraData.txt"):
+def get_data(filename):
     graph = defaultdict(list)
     distances = {}
-    with open(file) as file:
+    with open(filename) as file:
         for line in file.readlines():
             edges = line.split("\t")
             u = int(edges[0])
@@ -18,11 +20,26 @@ def get_data(file="../../../dijkstraData.txt"):
     return graph, distances
 
 
+def compute(start, ends, graph, distances):
+    shortest_distance = {}
+    for node in ends:
+        shortest_distance[node] = dijkstra.shortest_distance(
+            start, node, graph, distances
+        )
+    return ",".join(str(v) for v in shortest_distance.values())
+
+
 class TestBigGraph(TestCase):
-    graph, distances = get_data()
+    def test_shortest_paths_1(self):
+        graph, distances = get_data("../../../input_random_2_4.txt")
+        ends = [7, 37, 59, 82, 99, 115, 133, 165, 188, 197]
+        start = 1
+        actual = compute(start, ends, graph, distances)
+        expected = "247,431,362,429,376,382,430,474,430,361"
+        self.assertEqual(actual, expected)
 
-    def test_size(self):
-        self.assertEqual(len(self.graph), BIG_GRAPH_LEN)
-
-    def test_shortest_paths(self):
-        self.assertEqual(len(self.graph), BIG_GRAPH_LEN)
+    def test_shortest_paths_2(self):
+        graph, distances = get_data("../../../dijkstraData.txt")
+        ends = [7, 37, 59, 82, 99, 115, 133, 165, 188, 197]
+        start = 1
+        print(compute(start, ends, graph, distances))
