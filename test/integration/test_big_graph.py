@@ -8,7 +8,7 @@ threading.stack_size(67108864)
 BIG_GRAPH_SIZE = 875714
 
 
-def get_big_graph(file="../../SCC.txt"):
+def get_big_graph(file="../../../SCC.txt"):
     big_graph = {i: [] for i in range(1, BIG_GRAPH_SIZE + 1)}
     t_big_graph = {i: [] for i in range(1, BIG_GRAPH_SIZE + 1)}
     with open(file) as file:
