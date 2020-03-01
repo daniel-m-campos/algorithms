@@ -15,7 +15,7 @@ def get_array(file):
 class TestBigHastTables(TestCase):
     t = (-10_000, 10_000)
 
-    def check(self, filename, expected, fcn=hashtables.count_pairs):
+    def check(self, filename, expected, fcn=hashtables.bisect_count_pairs):
         array = get_array(filename)
 
         pr = cProfile.Profile()
@@ -48,4 +48,4 @@ class TestBigHastTables(TestCase):
         self.check("../../../input_random_43_10000.txt", 148)
 
     def test_one_million(self):
-        self.check("../../../algo1-programming_prob-2sum.txt", None)
+        self.check("../../../algo1-programming_prob-2sum.txt", 427)

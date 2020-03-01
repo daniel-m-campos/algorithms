@@ -1,3 +1,4 @@
+import bisect
 from collections import Counter
 
 
@@ -51,17 +52,25 @@ def brute_count_pairs(array, lower, upper):
 
 def fast_count_pairs(array, lower, upper):
     array.sort()
-    n = len(array)
     values = {v: i for i, v in enumerate(array)}
-    ts = []
+    counts = 0
     for t in range(lower, upper + 1):
-        i = 0
-        while i < n:
-            x = array[i]
-            j = values.get(t - x, None)
-            if j is not None and x != array[j]:
-                ts.append(t)
+        for x in array:
+            if 2 * x >= t:
                 break
-            else:
-                i += 1
-    return len(ts)
+            if t - x in values:
+                counts += 1
+                break
+
+    return counts
+
+def bisect_count_pairs(array, lower, upper):
+    array.sort()
+    counter = Counter()
+    for x in array:
+        i = bisect.bisect_left(array, lower - x) - 1
+        j = bisect.bisect_left(array, upper - x) +1
+        for y in array[i:j]:
+            if x != y and lower <= x+y <= upper:
+                counter[x + y] += 1
+    return len(counter)

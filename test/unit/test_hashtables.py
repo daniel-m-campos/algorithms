@@ -26,10 +26,13 @@ class TestHashTables(TestCase):
             values=[-3, -1, 1, 2, 9, 11, 7, 6, 2],
             t=(3, 10),
             expected=8,
-            fcn=hashtables.count_pairs,
+            fcn=hashtables.bisect_count_pairs,
         )
 
     def test_fast_case_2(self):
         self.check(
-            values=[-2, 0, 0, 4], t=(0, 4), expected=2, fcn=hashtables.count_pairs
+            values=[-2, 0, 0, 4],
+            t=(0, 4),
+            expected=2,
+            fcn=hashtables.bisect_count_pairs,
         )
