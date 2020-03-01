@@ -64,13 +64,14 @@ def fast_count_pairs(array, lower, upper):
 
     return counts
 
+
 def bisect_count_pairs(array, lower, upper):
     array.sort()
     counter = Counter()
     for x in array:
         i = bisect.bisect_left(array, lower - x) - 1
-        j = bisect.bisect_left(array, upper - x) +1
+        j = bisect.bisect_left(array, upper - x) + 1
         for y in array[i:j]:
-            if x != y and lower <= x+y <= upper:
+            if x != y and lower <= x + y <= upper:
                 counter[x + y] += 1
     return len(counter)
