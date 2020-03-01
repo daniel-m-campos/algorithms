@@ -6,31 +6,30 @@ def count_pairs(array, lower, upper):
     array.sort()
     values = {v: i for i, v in enumerate(array)}
     counter = Counter()
-    for x in values:
-        l = lower
-        u = upper
+    for x in array[:n // 2 + 2]:
+        l, u = lower, upper
         i, j = None, None
         while True:
-            i = values.get(l - x, None)
-            if i is not None:
-                break
-            else:
-                l += 1
             j = values.get(u - x, None)
             if j is not None:
                 break
             else:
                 u -= 1
+            if i is not None:
+                break
+            else:
+                l += 1
+            i = values.get(l - x, None)
             if l >= u:
                 break
         if i is None and j is None:
             continue
-        if i is not None:
-            k = i
-            step = 1
-        else:
+        if j is not None:
             k = j
             step = -1
+        else:
+            k = i
+            step = 1
         while 0 <= k < n and lower <= x + array[k] <= upper:
             if x != array[k]:
                 counter[x + array[k]] += 1
