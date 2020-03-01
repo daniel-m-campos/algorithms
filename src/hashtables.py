@@ -2,30 +2,39 @@ from collections import Counter
 
 
 def count_pairs(array, lower, upper):
+    n = len(array)
     array.sort()
     values = {v: i for i, v in enumerate(array)}
     counter = Counter()
     for x in values:
         l = lower
+        u = upper
+        i, j = None, None
         while True:
             i = values.get(l - x, None)
-            if i is not None or l >= upper:
+            if i is not None:
                 break
             else:
                 l += 1
-        u = upper
-        while True:
             j = values.get(u - x, None)
-            if j is not None or u <= lower:
+            if j is not None:
                 break
             else:
                 u -= 1
-        if i is None or j is None:
+            if l >= u:
+                break
+        if i is None and j is None:
             continue
-        for k in range(i, j + 1):
-            y = array[k]
-            if x != y and lower <= x + y <= upper:
-                counter[x + y] += 1
+        if i is not None:
+            k = i
+            step = 1
+        else:
+            k = j
+            step = -1
+        while 0 <= k < n and lower <= x + array[k] <= upper:
+            if x != array[k]:
+                counter[x + array[k]] += 1
+            k += step
     return len(counter)
 
 

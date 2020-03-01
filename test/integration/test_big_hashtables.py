@@ -15,7 +15,7 @@ def get_array(file):
 class TestBigHastTables(TestCase):
     t = (-10_000, 10_000)
 
-    def check(self, filename, expected, fcn=hashtables.fast_count_pairs):
+    def check(self, filename, expected, fcn=hashtables.count_pairs):
         array = get_array(filename)
 
         pr = cProfile.Profile()
