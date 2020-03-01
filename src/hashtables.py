@@ -6,7 +6,9 @@ def count_pairs(array, lower, upper):
     array.sort()
     values = {v: i for i, v in enumerate(array)}
     counter = Counter()
-    for x in array[:n // 2 + 2]:
+    for x in array:
+        if x + x >= upper:
+            break
         l, u = lower, upper
         i, j = None, None
         while True:
