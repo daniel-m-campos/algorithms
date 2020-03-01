@@ -69,6 +69,8 @@ def bisect_count_pairs(array, lower, upper):
     array.sort()
     counter = Counter()
     for x in array:
+        if 2 * x >= upper:
+            break
         i = bisect.bisect_left(array, lower - x) - 1
         j = bisect.bisect_left(array, upper - x) + 1
         for y in array[i:j]:
