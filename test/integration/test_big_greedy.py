@@ -1,5 +1,7 @@
 from unittest import TestCase
 
+import greedy
+
 
 def get_jobs(filename):
     jobs = []
@@ -13,5 +15,16 @@ def get_jobs(filename):
 class TestGreedy(TestCase):
     jobs = get_jobs("../../../jobs.txt")
 
-    def test_jobs(self):
+    def test_data(self):
         self.assertIsNotNone(self.jobs)
+
+    def test_diff(self):
+        schedule = greedy.schedule(self.jobs, "diff")
+        completion_time = greedy.completion_time(schedule)
+        print(f"Diff completion time is {completion_time}")
+
+
+    def test_ratio(self):
+        schedule = greedy.schedule(self.jobs, "ratio")
+        completion_time = greedy.completion_time(schedule)
+        print(f"Ratio completion time is {completion_time}")
