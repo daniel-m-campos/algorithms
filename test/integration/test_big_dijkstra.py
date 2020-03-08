@@ -10,7 +10,7 @@ def get_data(filename):
     graph = defaultdict(list)
     distances = {}
     with open(filename) as file:
-        for line in file.readlines():
+        for line in file:
             edges = line.split("\t")
             u = int(edges[0])
             for edge in (e for e in edges[1:] if e != "\n"):

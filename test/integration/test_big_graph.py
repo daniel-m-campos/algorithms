@@ -12,7 +12,7 @@ def get_big_graph(file="../../../SCC.txt"):
     big_graph = {i: [] for i in range(1, BIG_GRAPH_SIZE + 1)}
     t_big_graph = {i: [] for i in range(1, BIG_GRAPH_SIZE + 1)}
     with open(file) as file:
-        for line in file.readlines():
+        for line in file:
             edge = line.split()
             big_graph[int(edge[0])].append(int(edge[1]))
             t_big_graph[int(edge[1])].append(int(edge[0]))
