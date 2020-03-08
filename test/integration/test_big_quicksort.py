@@ -1,18 +1,13 @@
 from unittest import TestCase
 
 import quicksort as qs
+from . import util
 
 BIG_ARRAY_LEN = 10_000
 
 
-def get_big_array(file="../../../QuickSort.txt"):
-    with open(file) as file:
-        array = [int(integer) for integer in file.readlines()]
-    return array
-
-
 class TestBigQuickSort(TestCase):
-    big_array = get_big_array()
+    big_array = util.get_big_array("../../../QuickSort.txt")
     sorted_big_array = sorted(big_array)
 
     def test_size(self):

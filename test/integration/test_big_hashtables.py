@@ -4,19 +4,14 @@ import pstats
 from unittest import TestCase
 
 import hashtables
-
-
-def get_array(file):
-    with open(file) as file:
-        array = [int(integer) for integer in file.readlines()]
-    return array
+from . import util
 
 
 class TestBigHastTables(TestCase):
     t = (-10_000, 10_000)
 
     def check(self, filename, expected, fcn=hashtables.bisect_count_pairs):
-        array = get_array(filename)
+        array = util.get_big_array(filename)
 
         pr = cProfile.Profile()
         pr.enable()
@@ -25,7 +20,7 @@ class TestBigHastTables(TestCase):
 
         pr.disable()
         s = io.StringIO()
-        ps = pstats.Stats(pr, stream=s).sort_stats('cumulative')
+        ps = pstats.Stats(pr, stream=s).sort_stats("cumulative")
         ps.print_stats()
         print(s.getvalue())
         print(f"The result for {filename} is: {actual}")

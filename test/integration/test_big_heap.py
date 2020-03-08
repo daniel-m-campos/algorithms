@@ -1,18 +1,13 @@
 from unittest import TestCase
 
 import heaps
+from . import util
 
 BIG_ARRAY_LEN = 10_000
 
 
-def get_big_array(file="../../../Median.txt"):
-    with open(file) as file:
-        array = [int(integer) for integer in file.readlines()]
-    return array
-
-
 class TestBigHeap(TestCase):
-    big_array = get_big_array()
+    big_array = util.get_big_array("../../../Median.txt")
 
     def test_size(self):
         self.assertEqual(len(self.big_array), BIG_ARRAY_LEN)
