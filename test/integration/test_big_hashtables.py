@@ -4,7 +4,7 @@ import pstats
 from unittest import TestCase
 
 import hashtables
-from . import util
+from test.integration import util
 
 
 class TestBigHastTables(TestCase):

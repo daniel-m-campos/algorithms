@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 import heaps
-from . import util
+from test.integration import util
 
 BIG_ARRAY_LEN = 10_000
 
