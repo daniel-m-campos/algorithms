@@ -62,6 +62,3 @@ class TestSCC(TestCase):
         actual = graphs.sorted_scc(result)
         expected = [6, 3, 2, 1]
         self.assertListEqual(actual, expected)
-
-
-
