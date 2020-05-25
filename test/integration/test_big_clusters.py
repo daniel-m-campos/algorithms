@@ -22,14 +22,21 @@ class TestLoadingData(TestCase):
 class TestKruskal(TestCase):
     def test_small_graph(self):
         nodes, _, distances = get_graph("../../../test_edges.txt")
-        mst = clusters.kruskal(nodes, distances)
+        mst, _ = clusters.kruskal(nodes, distances)
         actual = clusters.total_cost(mst, distances)
         expected = 7
         self.assertEqual(actual, expected)
 
     def test_big_graph(self):
         nodes, graph, distances = get_graph("../../../edges.txt")
-        mst = clusters.kruskal(nodes, distances)
+        mst, _ = clusters.kruskal(nodes, distances)
         actual = clusters.total_cost(mst, distances)
         expected = -3612829
         self.assertEqual(actual, expected)
+
+class TestClusters(TestCase):
+    def test_small_graph(self):
+        edges = get_edges_with_costs("../../../test_clustering_1_8.txt")
+        nodes, _, distances = to_graph(edges)
+        tree = clusters.kruskal(nodes, distances, num_clusters=4)
+        expected = 21

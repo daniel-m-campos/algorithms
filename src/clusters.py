@@ -24,13 +24,14 @@ between nodes 1 and 3 (equivalently, the cost of the edge (1,3)) is 5250. You ca
 that distances are positive, but you should NOT assume that they are distinct.
 
 Your task in this problem is to run the clustering algorithm from lecture on this data
-set, where the target number kk of clusters is set to 4. What is the maximum spacing of
+set, where the target number k of clusters is set to 4. What is the maximum spacing of
 a 4-clustering?
 
 ADVICE: If you're not getting the correct answer, try debugging your algorithm using
 some small test cases. And then post them to the discussion forum!
 """
-from typing import Collection, Set, Dict, Tuple
+from collections import defaultdict
+from typing import Collection, Set, Dict, Tuple, List
 
 
 class UnionFind:
@@ -57,10 +58,16 @@ class UnionFind:
         self._parents[child] = parent
         self._sizes[parent] += self._sizes[child]
 
+    def groups(self) -> Dict[int, List]:
+        groups = defaultdict(list)
+        for item in self._items:
+            groups[self.find(item)].append(item)
+        return {i: group for i, group in enumerate(groups.values())}
+
 
 def kruskal(
     nodes: Set, distances: Dict[Tuple[int, int], int], num_clusters: int = 1,
-) -> Set[Tuple[int, int]]:
+) -> [Set[Tuple[int, int]], Dict[int, List]]:
     spanning_edges = set()
     uf = UnionFind(nodes)
     edges = sorted(distances.keys(), key=lambda x: distances[x], reverse=True)
@@ -69,7 +76,7 @@ def kruskal(
         if uf.find(u) != uf.find(v):
             uf.union(u, v)
             spanning_edges.add((u, v))
-    return spanning_edges
+    return spanning_edges, uf.groups()
 
 
 def total_cost(edges: Set[Tuple[int, int]], distances: Dict[Tuple[int, int], int]):
