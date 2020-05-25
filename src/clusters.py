@@ -31,18 +31,18 @@ ADVICE: If you're not getting the correct answer, try debugging your algorithm u
 some small test cases. And then post them to the discussion forum!
 """
 
-from typing import List
+from typing import Collection, Set, Dict, Tuple
 
 
 class UnionFind:
-    def __init__(self, items: List):
+    def __init__(self, items: Collection):
         super().__init__()
         num_items = len(items)
         self._items = {item: i for i, item in enumerate(items)}
         self._parents = list(range(num_items))
         self._sizes = [1] * num_items
 
-    def find(self, item):
+    def find(self, item) -> int:
         index = self._items[item]
         while index != self._parents[index]:
             index = self._parents[index]
@@ -57,3 +57,19 @@ class UnionFind:
             parent, child = parent_2, parent_1
         self._parents[child] = parent
         self._sizes[parent] += self._sizes[child]
+
+
+def kruskal(
+    nodes: Set, distances: Dict[Tuple[int, int], int], reverse: bool = False
+) -> Set[Tuple[int, int]]:
+    spanning_edges = set()
+    uf = UnionFind(nodes)
+    for u, v in sorted(distances.keys(), key=lambda x: distances[x], reverse=reverse):
+        if uf.find(u) != uf.find(v):
+            uf.union(u, v)
+            spanning_edges.add((u, v))
+    return spanning_edges
+
+
+def total_cost(edges: Set[Tuple[int, int]], distances: Dict):
+    return sum(distances[e] for e in edges)
