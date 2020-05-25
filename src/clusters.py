@@ -30,7 +30,6 @@ a 4-clustering?
 ADVICE: If you're not getting the correct answer, try debugging your algorithm using
 some small test cases. And then post them to the discussion forum!
 """
-
 from typing import Collection, Set, Dict, Tuple
 
 
@@ -60,16 +59,18 @@ class UnionFind:
 
 
 def kruskal(
-    nodes: Set, distances: Dict[Tuple[int, int], int], reverse: bool = False
+    nodes: Set, distances: Dict[Tuple[int, int], int], num_clusters: int = 1,
 ) -> Set[Tuple[int, int]]:
     spanning_edges = set()
     uf = UnionFind(nodes)
-    for u, v in sorted(distances.keys(), key=lambda x: distances[x], reverse=reverse):
+    edges = sorted(distances.keys(), key=lambda x: distances[x], reverse=True)
+    while len(spanning_edges) < len(nodes) - num_clusters:
+        u, v = edges.pop()
         if uf.find(u) != uf.find(v):
             uf.union(u, v)
             spanning_edges.add((u, v))
     return spanning_edges
 
 
-def total_cost(edges: Set[Tuple[int, int]], distances: Dict):
+def total_cost(edges: Set[Tuple[int, int]], distances: Dict[Tuple[int, int], int]):
     return sum(distances[e] for e in edges)
