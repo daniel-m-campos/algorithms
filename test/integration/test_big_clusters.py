@@ -18,10 +18,18 @@ class TestLoadingData(TestCase):
         self.assertTrue(len(nodes) == len(graph))
         self.assertTrue(len(distances) == 2 * len(self.edges))
 
+
 class TestKruskal(TestCase):
     def test_small_graph(self):
         nodes, _, distances = get_graph("../../../test_edges.txt")
-        mst = clusters.kruskal(nodes,  distances)
+        mst = clusters.kruskal(nodes, distances)
         actual = clusters.total_cost(mst, distances)
         expected = 7
+        self.assertEqual(actual, expected)
+
+    def test_big_graph(self):
+        nodes, graph, distances = get_graph("../../../edges.txt")
+        mst = clusters.kruskal(nodes, distances)
+        actual = clusters.total_cost(mst, distances)
+        expected = -3612829
         self.assertEqual(actual, expected)
