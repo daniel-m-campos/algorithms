@@ -1,27 +1,7 @@
-from collections import defaultdict
 from unittest import TestCase
 
 import greedy
-from test.integration.util import get_jobs
-
-
-def get_graph(filename):
-    graph = defaultdict(list)
-    distances = {}
-    nodes = set()
-    with open(filename) as file:
-        num_nodes, num_edges = tuple(int(l) for l in next(file).strip().split())
-        for line in file:
-            u, v, d = (int(l) for l in line.strip().split())
-            graph[u].append(v)
-            graph[v].append(u)
-            distances[u, v] = d
-            distances[v, u] = d
-            for node in (u, v):
-                nodes.add(node)
-    assert len(nodes) == num_nodes, f"Number of nodes is not {num_nodes}"
-    assert len(distances) == 2 * num_edges, f"Number of edges is not {num_edges}"
-    return nodes, graph, distances
+from test.integration.util import get_jobs, get_graph
 
 
 class TestScheduler(TestCase):
