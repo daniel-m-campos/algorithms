@@ -2,16 +2,7 @@ from collections import defaultdict
 from unittest import TestCase
 
 import greedy
-
-
-def get_jobs(filename):
-    jobs = []
-    with open(filename) as file:
-        num_jobs = int(next(file))
-        for line in file:
-            jobs.append(tuple(int(l) for l in line.strip().split()))
-    assert len(jobs) == num_jobs, f"Length of jobs is not {num_jobs}"
-    return jobs
+from test.integration.util import get_jobs
 
 
 def get_graph(filename):
