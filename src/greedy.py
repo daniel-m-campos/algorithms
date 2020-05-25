@@ -2,6 +2,8 @@ import heapq
 import itertools
 from collections import defaultdict
 
+from typing import Set, Dict, Tuple
+
 
 def schedule(jobs, mode):
     if "diff" in mode:
@@ -19,7 +21,7 @@ def completion_time(schedule):
     return sum(w * t for w, t in zip(weights, completion_times))
 
 
-def prim(nodes: set, graph: dict, distances: dict):
+def prim(nodes: Set, graph: Dict, distances: Dict):
     mst = defaultdict(set)
     start_node = next(iter(nodes))
     visited = {start_node}
@@ -40,5 +42,5 @@ def prim(nodes: set, graph: dict, distances: dict):
     return mst
 
 
-def total_cost(tree, distances):
+def total_cost(tree: Dict, distances: Dict[Tuple[int, int], int]):
     return sum(distances[u, v] for u in tree for v in tree[u])
