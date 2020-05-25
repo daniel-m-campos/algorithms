@@ -67,17 +67,24 @@ class UnionFind:
 
 def kruskal(
     nodes: Set, distances: Dict[Tuple[int, int], int], num_clusters: int = 1,
-) -> [Set[Tuple[int, int]], Dict[int, List]]:
-    spanning_edges = set()
+) -> [List[Tuple[int, int]], Dict[int, List]]:
+    spanning_edges = []
     uf = UnionFind(nodes)
     edges = sorted(distances.keys(), key=lambda x: distances[x], reverse=True)
     while len(spanning_edges) < len(nodes) - num_clusters:
         u, v = edges.pop()
         if uf.find(u) != uf.find(v):
             uf.union(u, v)
-            spanning_edges.add((u, v))
-    return spanning_edges, uf.groups()
+            spanning_edges.append((u, v))
+    if num_clusters == 1:
+        return spanning_edges
+    next_edge = None
+    while edges and next_edge is None:
+        u, v = edges.pop()
+        if uf.find(u) != uf.find(v):
+            next_edge = u, v
+    return spanning_edges, distances[next_edge]
 
 
-def total_cost(edges: Set[Tuple[int, int]], distances: Dict[Tuple[int, int], int]):
+def total_cost(edges: List[Tuple[int, int]], distances: Dict[Tuple[int, int], int]):
     return sum(distances[e] for e in edges)

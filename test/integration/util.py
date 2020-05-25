@@ -33,10 +33,8 @@ def to_graph(edges: List[Tuple]) -> [Set, Dict, Dict]:
     graph = defaultdict(list)
     distances = {}
     for u, v, d in edges:
-        graph[u].append(v)
         graph[v].append(u)
         distances[u, v] = d
-        distances[v, u] = d
         for node in (u, v):
             nodes.add(node)
     return nodes, graph, distances
