@@ -8,6 +8,7 @@ def get_big_array(filename: str) -> List[int]:
         array = [int(integer) for integer in filename]
     return array
 
+
 def read_edges(filename: str) -> [List[Tuple], int]:
     edges = []
     with open(filename) as file:
@@ -15,6 +16,7 @@ def read_edges(filename: str) -> [List[Tuple], int]:
         for line in file:
             edges.append(tuple(int(l) for l in line.strip().split()))
     return edges, num
+
 
 def get_jobs(filename: str) -> List[Tuple]:
     jobs, num_jobs = read_edges(filename)
@@ -27,6 +29,7 @@ def get_edges_with_costs(filename: str) -> List[Tuple]:
     nodes = set(chain.from_iterable(e[:2] for e in edges))
     assert len(nodes) == num_nodes, f"Length of nodes is not {num_nodes}"
     return edges
+
 
 def to_graph(edges: List[Tuple]) -> [Set, Dict, Dict]:
     nodes = set()

@@ -18,7 +18,10 @@ class TestHashTables(TestCase):
 
     def test_brute_case_2(self):
         self.check(
-            values=[-2, 0, 0, 4], t=(0, 4), expected=2, fcn=hashtables.brute_count_pairs
+            values=[-2, 0, 0, 4],
+            t=(0, 4),
+            expected=2,
+            fcn=hashtables.brute_count_pairs,
         )
 
     def test_fast_case_1(self):
