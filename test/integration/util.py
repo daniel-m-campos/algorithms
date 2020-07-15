@@ -3,7 +3,7 @@ from itertools import chain
 from typing import List, Tuple, Dict, Set
 
 
-def get_big_array(filename: str) -> List[int]:
+def get_array(filename: str) -> List[int]:
     with open(filename) as filename:
         array = [int(integer) for integer in filename]
     return array

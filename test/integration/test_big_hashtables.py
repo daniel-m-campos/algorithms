@@ -11,7 +11,7 @@ class TestBigHastTables(TestCase):
     t = (-10_000, 10_000)
 
     def check(self, filename, expected, fcn=hashtables.bisect_count_pairs):
-        array = util.get_big_array(filename)
+        array = util.get_array(filename)
 
         pr = cProfile.Profile()
         pr.enable()

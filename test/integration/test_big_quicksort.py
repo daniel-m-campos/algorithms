@@ -7,7 +7,7 @@ BIG_ARRAY_LEN = 10_000
 
 
 class TestBigQuickSort(TestCase):
-    big_array = util.get_big_array("../../../QuickSort.txt")
+    big_array = util.get_array("../../../QuickSort.txt")
     sorted_big_array = sorted(big_array)
 
     def test_size(self):

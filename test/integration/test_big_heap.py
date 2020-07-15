@@ -7,7 +7,7 @@ BIG_ARRAY_LEN = 10_000
 
 
 class TestBigHeap(TestCase):
-    big_array = util.get_big_array("../../../Median.txt")
+    big_array = util.get_array("../../../Median.txt")
 
     def test_size(self):
         self.assertEqual(len(self.big_array), BIG_ARRAY_LEN)
