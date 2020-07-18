@@ -7,6 +7,7 @@ def get_array(filename: str) -> List[int]:
     with open(filename) as filename:
         return [int(integer) for integer in filename]
 
+
 def read_edges(filename: str) -> [List[Tuple], int]:
     edges = []
     with open(filename) as file:
