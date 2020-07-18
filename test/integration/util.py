@@ -5,9 +5,7 @@ from typing import List, Tuple, Dict, Set
 
 def get_array(filename: str) -> List[int]:
     with open(filename) as filename:
-        array = [int(integer) for integer in filename]
-    return array
-
+        return [int(integer) for integer in filename]
 
 def read_edges(filename: str) -> [List[Tuple], int]:
     edges = []
