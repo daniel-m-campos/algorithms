@@ -16,8 +16,8 @@ def mwis(weights: List[int]) -> [int, List[int]]:
         if solutions[i - 1] >= solutions[i - 2] + weights[i]:
             i -= 1
         else:
-            vertices.append(i)
+            vertices.append(i+1)
             i -= 2
-    if i == 1:
-        vertices.append(i)
+    if i < 2:
+        vertices.append(i+1)
     return max_weight, sorted(vertices)
