@@ -20,11 +20,16 @@ def test_vertex_in_mwis(file, expected):
 
 @pytest.mark.parametrize(
     "file, expected",
-    [("../../../knapsack_test1.txt", 147), ("../../../knapsack1.txt", 2493893),],
+    [
+        ("../../../knapsack_test1.txt", 147),
+        ("../../../knapsack1.txt", 2493893),
+        ("../../../knapsack_big.txt", 4243395),
+    ],
 )
 def test_knapsack(file, expected):
     knapsack_data = util.get_tuples(file)
     size, _ = knapsack_data[0]
     items = knapsack_data[1:]
-    actual = dp.knapsack(size, items)
+    knapsack = dp.Knapsack()
+    actual = knapsack(size, items)
     assert actual == expected

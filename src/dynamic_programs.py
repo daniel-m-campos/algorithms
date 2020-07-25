@@ -1,4 +1,7 @@
+import sys
 from typing import List, Tuple
+
+sys.setrecursionlimit(10 ** 6)
 
 
 def mwis(weights: List[int]) -> [int, List[int]]:
@@ -33,3 +36,35 @@ def knapsack(capacity: int, items: List[Tuple[int, int]]) -> int:
             else:
                 solns[i][c] = max(solns[i - 1][c], solns[i - 1][c - size] + value)
     return solns[n][capacity]
+
+
+class Knapsack:
+    def __init__(self) -> None:
+        super().__init__()
+        self._cache = {}
+
+    def __call__(self, capacity: int, items: List[Tuple[int, int]]) -> int:
+        if capacity <= 0:
+            return 0
+
+        value, size = items[-1]
+        if len(items) == 1:
+            return value if size <= capacity else 0
+
+        n_sub_items = len(items[:-1])
+        key1 = (n_sub_items, capacity)
+        value1 = self._cache.get(key1)
+        if value1 is None:
+            value1 = self(capacity, items[:-1])
+            self._cache[key1] = value1
+
+        key2 = (n_sub_items, capacity - size)
+        value2 = self._cache.get(key2)
+        if value2 is None:
+            if size <= capacity:
+                value2 = self(capacity - size, items[:-1])
+                self._cache[key2] = value2
+            else:
+                return value1
+
+        return max(value1, value2 + value)

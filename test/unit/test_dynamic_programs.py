@@ -8,5 +8,6 @@ def test_four_vertex_mwis():
 
 
 def test_four_item_knapsack():
-    actual = dp.knapsack(capacity=6, items=[(3, 4), (2, 3), (4, 2), (4, 3)])
+    knapsack = dp.Knapsack()
+    actual = knapsack(capacity=6, items=[(3, 4), (2, 3), (4, 2), (4, 3)])
     assert actual == 8
