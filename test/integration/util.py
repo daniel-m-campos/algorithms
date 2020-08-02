@@ -47,7 +47,7 @@ def to_graph(edges: List[Tuple]) -> [Set, Dict, Dict]:
     return nodes, graph, distances
 
 
-def get_graph(filename):
+def get_graph(filename, directed=False, offset=0):
     graph = defaultdict(list)
     distances = {}
     nodes = set()
@@ -55,12 +55,17 @@ def get_graph(filename):
         num_nodes, num_edges = tuple(int(l) for l in next(file).strip().split())
         for line in file:
             u, v, d = (int(l) for l in line.strip().split())
+            u, v = u - offset, v - offset
             graph[u].append(v)
-            graph[v].append(u)
             distances[u, v] = d
-            distances[v, u] = d
+            if not directed:
+                graph[v].append(u)
+                distances[v, u] = d
             for node in (u, v):
                 nodes.add(node)
     assert len(nodes) == num_nodes, f"Number of nodes is not {num_nodes}"
-    assert len(distances) == 2 * num_edges, f"Number of edges is not {num_edges}"
+    num_distances = num_edges if directed else 2 * num_edges
+    assert (
+        len(distances) == num_distances
+    ), f"Number of distances is not {num_distances}"
     return nodes, graph, distances

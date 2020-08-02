@@ -23,8 +23,8 @@ def get_data(filename):
 def compute(start, ends, graph, distances):
     shortest_distance = {}
     for node in ends:
-        shortest_distance[node] = dijkstra.shortest_distance(
-            start, node, graph, distances
+        shortest_distance[node] = dijkstra.shortest_distance_using_heaps(
+            start, graph, distances, node
         )
     return ",".join(str(v) for v in shortest_distance.values())
 
