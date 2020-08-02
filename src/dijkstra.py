@@ -29,15 +29,6 @@ def shortest_distance(
     return shortest_distances[end] if end else shortest_distances
 
 
-def remove(heap, lookup, item):
-    index = lookup[item]
-    heap[index] = heap[-1]
-    heap.pop()
-    if index < len(heap):
-        heapq._siftup(heap, index)
-        heapq._siftdown(heap, 0, index)
-
-
 def shortest_distance_using_heaps(
     start: int,
     graph: Dict[int, List[int]],
