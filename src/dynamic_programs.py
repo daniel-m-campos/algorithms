@@ -1,5 +1,8 @@
+import math
 import sys
-from typing import List, Tuple
+from typing import List, Tuple, Union, Dict
+
+import graphs
 
 sys.setrecursionlimit(10 ** 6)
 
@@ -68,3 +71,27 @@ class Knapsack:
                 return value1
 
         return max(value1, value2 + value)
+
+
+def bellman_ford(
+    start: int, graph: Dict[int, List[int]], distances: Dict[Tuple[int, int], float]
+) -> Union[List[float], str]:
+    n = len(graph)
+    t_graph = graphs.transpose(graph)
+    solutions = [[math.inf] * n for j in range(n + 1)]
+    solutions[0][start] = 0
+    for i in range(1, n + 1):
+        stable = True
+        for v in graph:
+            if not t_graph[v]:
+                solutions[i][v] = solutions[i - 1][v]
+            else:
+                solutions[i][v] = min(
+                    solutions[i - 1][v],
+                    min(solutions[i - 1][w] + distances[w, v] for w in t_graph[v]),
+                )
+            if solutions[i][v] != solutions[i - 1][v]:
+                stable = False
+        if stable:
+            return solutions[i - 1]
+    return "negative cycle"
