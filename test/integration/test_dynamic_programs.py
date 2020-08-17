@@ -33,3 +33,13 @@ def test_knapsack(file, expected):
     knapsack = dp.Knapsack()
     actual = knapsack(size, items)
     assert actual == expected
+
+
+@pytest.mark.parametrize(
+    "file, expected", [("../../../tsp_test.txt", 12.36), ("../../../tsp.txt", 0),],
+)
+def test_tsp(file, expected):
+    coordinates = util.get_tuples(file, skip_first=True, num_type=float)
+    coordinates = [dp.Coordinate(*x) for x in coordinates]
+    actual = dp.tsp(coordinates)
+    assert round(actual, 2) == expected

@@ -1,5 +1,8 @@
 import math
 import sys
+from collections import namedtuple
+from functools import lru_cache
+from itertools import combinations
 from typing import List, Tuple, Union, Dict
 
 import graphs
@@ -95,3 +98,51 @@ def bellman_ford(
         if stable:
             return solutions[i - 1]
     return "negative cycle"
+
+
+Coordinate = namedtuple("Coordinate", ["x", "y"])
+
+
+@lru_cache()
+def distance(c1: Coordinate, c2: Coordinate):
+    return math.sqrt(sum(pow(x[0] - x[1], 2) for x in zip(c1, c2)))
+
+
+def encode(n: int, subset: List[int]):
+    bit_array = [0] * n
+    for i in subset:
+        bit_array[i] = 1
+    return int("".join(str(i) for i in bit_array), base=2)
+
+
+def subset_index(n: int, subset: List[int]):
+    return encode(n - 1, [j - 1 for j in subset]) - 1
+
+
+def tsp(coordinates: List[Coordinate]):
+    """
+    The Bellman-Held-Karp algorithm for solving the Traveling salesman problem
+    in O(n^2 2^n) time
+    """
+
+    n = len(coordinates)
+    solutions = [[0] * (n - 1) for _ in range(pow(2, n - 1) - 1)]
+    c1 = coordinates[0]
+    indexes = list(range(n))
+    for j, adjacent in enumerate(coordinates[1:]):
+        s = subset_index(n, [j + 1])
+        solutions[s][j] = distance(c1, adjacent)
+    for s_size in range(2, n):
+        for subset in combinations(indexes[1:], s_size):
+            s = subset_index(n, subset)
+            for j_index, j in enumerate(subset):
+                subset_minus_j = subset[:j_index] + subset[j_index + 1 :]
+                s_j = subset_index(n, subset_minus_j)
+                solutions[s][j - 1] = min(
+                    solutions[s_j][k - 1] + distance(coordinates[k], coordinates[j])
+                    for k in subset_minus_j
+                )
+    s = subset_index(n, indexes)
+    return min(
+        solutions[s][j] + distance(cj, c1) for j, cj in enumerate(coordinates[1:])
+    )

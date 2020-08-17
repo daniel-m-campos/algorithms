@@ -3,9 +3,11 @@ from itertools import chain
 from typing import List, Tuple, Dict, Set
 
 
-def get_tuples(filename: str) -> List[Tuple]:
+def get_tuples(filename: str, skip_first=False, num_type=int) -> List[Tuple]:
     with open(filename) as filename:
-        return [tuple(int(i) for i in line.split()) for line in filename]
+        if skip_first:
+            next(filename)
+        return [tuple(num_type(i) for i in line.split()) for line in filename]
 
 
 def get_array(filename: str) -> List[int]:
