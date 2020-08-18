@@ -36,7 +36,8 @@ def test_knapsack(file, expected):
 
 
 @pytest.mark.parametrize(
-    "file, expected", [("../../../tsp_test.txt", 12.36), ("../../../tsp.txt", 0),],
+    "file, expected",
+    [("../../../tsp_test.txt", 12.36), ("../../../tsp.txt", 26442.73),],
 )
 def test_tsp(file, expected):
     coordinates = util.get_tuples(file, skip_first=True, num_type=float)
