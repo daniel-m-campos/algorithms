@@ -44,9 +44,7 @@ def test_knapsack(file, expected):
     "file, expected",
     [
         (f"{RESOURCES}/tsp_test.txt", 19.69),
-        pytest.param(
-            f"{RESOURCES}/tsp.txt", 26442.73, marks=pytest.mark.skip, reason="Too slow"
-        ),
+        pytest.param(f"{RESOURCES}/tsp.txt", 26442.73, marks=pytest.mark.skip),
     ],
 )
 def test_tsp(file, expected):
