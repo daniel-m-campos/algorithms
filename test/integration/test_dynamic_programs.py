@@ -3,10 +3,15 @@ import pytest
 import dynamic_programs as dp
 from test.integration import util
 
+RESOURCES = util.resource_directory()
+
 
 @pytest.mark.parametrize(
     "file, expected",
-    [("../../../mwis_16_80.txt", "10100000"), ("../../../mwis.txt", "10100110")],
+    [
+        (f"{RESOURCES}/mwis_16_80.txt", "10100000"),
+        (f"{RESOURCES}/mwis.txt", "10100110"),
+    ],
 )
 def test_vertex_in_mwis(file, expected):
     array = util.get_array(file)
@@ -21,9 +26,9 @@ def test_vertex_in_mwis(file, expected):
 @pytest.mark.parametrize(
     "file, expected",
     [
-        ("../../../knapsack_test1.txt", 147),
-        ("../../../knapsack1.txt", 2493893),
-        ("../../../knapsack_big.txt", 4243395),
+        (f"{RESOURCES}/knapsack_test1.txt", 147),
+        (f"{RESOURCES}/knapsack1.txt", 2493893),
+        (f"{RESOURCES}/knapsack_big.txt", 4243395),
     ],
 )
 def test_knapsack(file, expected):
@@ -37,7 +42,7 @@ def test_knapsack(file, expected):
 
 @pytest.mark.parametrize(
     "file, expected",
-    [("../../../tsp_test.txt", 12.36), ("../../../tsp.txt", 26442.73),],
+    [(f"{RESOURCES}/tsp_test.txt", 12.36), (f"{RESOURCES}/tsp.txt", 26442.73),],
 )
 def test_tsp(file, expected):
     coordinates = util.get_tuples(file, skip_first=True, num_type=float)

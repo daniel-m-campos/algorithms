@@ -1,19 +1,19 @@
-from unittest import TestCase
-
 import heaps
 from test.integration import util
 
+RESOURCES = util.resource_directory()
 BIG_ARRAY_LEN = 10_000
 
 
-class TestBigHeap(TestCase):
-    big_array = util.get_array("../../../Median.txt")
+BIG_ARRAY = util.get_array(f"{RESOURCES}/Median.txt")
 
-    def test_size(self):
-        self.assertEqual(len(self.big_array), BIG_ARRAY_LEN)
 
-    def test_updates(self):
-        low_heap, high_heap = [], []
-        medians = [heaps.median_update(v, low_heap, high_heap) for v in self.big_array]
-        self.assertEqual(len(medians), BIG_ARRAY_LEN)
-        print(f"sum(m) % {BIG_ARRAY_LEN} = {sum(medians) % BIG_ARRAY_LEN}")
+def test_size():
+    assert len(BIG_ARRAY) == BIG_ARRAY_LEN
+
+
+def test_updates():
+    low_heap, high_heap = [], []
+    medians = [heaps.median_update(v, low_heap, high_heap) for v in BIG_ARRAY]
+    assert len(medians) == BIG_ARRAY_LEN
+    print(f"sum(m) % {BIG_ARRAY_LEN} = {sum(medians) % BIG_ARRAY_LEN}")

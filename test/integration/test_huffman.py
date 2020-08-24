@@ -3,10 +3,15 @@ import pytest
 import huffman
 from test.integration import util
 
+RESOURCES = util.resource_directory()
+
 
 @pytest.mark.parametrize(
     "file, min_length, max_length",
-    [("../../../huffman_10_40_input.txt", 4, 9), ("../../../huffman.txt", 9, 19)],
+    [
+        (f"{RESOURCES}/huffman_10_40_input.txt", 4, 9),
+        (f"{RESOURCES}/huffman.txt", 9, 19),
+    ],
 )
 def test_code_lengths(file, min_length, max_length):
     array = util.get_array(file)

@@ -1,42 +1,40 @@
-from unittest import TestCase
-
 import greedy
-from test.integration.util import get_jobs, get_graph
+from test.integration import util
+
+RESOURCES = util.resource_directory()
 
 
-class TestScheduler(TestCase):
-    jobs = get_jobs("../../../jobs.txt")
-
-    def test_data(self):
-        self.assertIsNotNone(self.jobs)
-
-    def test_diff(self):
-        schedule = greedy.schedule(self.jobs, "diff")
-        completion_time = greedy.completion_time(schedule)
-        print(f"Diff completion time is {completion_time}")
-
-    def test_ratio(self):
-        schedule = greedy.schedule(self.jobs, "ratio")
-        completion_time = greedy.completion_time(schedule)
-        print(f"Ratio completion time is {completion_time}")
+def test_diff():
+    jobs = util.get_jobs(f"{RESOURCES}/jobs.txt")
+    schedule = greedy.schedule(jobs, "diff")
+    completion_time = greedy.completion_time(schedule)
+    print(f"Diff completion time is {completion_time}")
 
 
-class TestPrim(TestCase):
-    def test_data(self):
-        nodes, graph, distances = get_graph("../../../test_edges.txt")
-        self.assertIsNotNone(nodes)
-        self.assertIsNotNone(graph)
-        self.assertIsNotNone(distances)
+def test_ratio():
+    jobs = util.get_jobs(f"{RESOURCES}/jobs.txt")
+    schedule = greedy.schedule(jobs, "ratio")
+    completion_time = greedy.completion_time(schedule)
+    print(f"Ratio completion time is {completion_time}")
 
-    def test_small_graph(self):
-        nodes, graph, distances = get_graph("../../../test_edges.txt")
-        mst = greedy.prim(nodes, graph, distances)
-        actual = greedy.total_cost(mst, distances)
-        expected = 7
-        self.assertEqual(actual, expected)
 
-    def test_big_graph(self):
-        nodes, graph, distances = get_graph("../../../edges.txt")
-        mst = greedy.prim(nodes, graph, distances)
-        cost = greedy.total_cost(mst, distances)
-        print(f"The MST cost is {cost}")
+def test_data():
+    nodes, graph, distances = util.get_graph(f"{RESOURCES}/test_edges.txt")
+    assert nodes is not None
+    assert graph is not None
+    assert distances is not None
+
+
+def test_small_graph():
+    nodes, graph, distances = util.get_graph(f"{RESOURCES}/test_edges.txt")
+    mst = greedy.prim(nodes, graph, distances)
+    actual = greedy.total_cost(mst, distances)
+    expected = 7
+    assert actual == expected
+
+
+def test_big_graph():
+    nodes, graph, distances = util.get_graph(f"{RESOURCES}/edges.txt")
+    mst = greedy.prim(nodes, graph, distances)
+    cost = greedy.total_cost(mst, distances)
+    print(f"The MST cost is {cost}")

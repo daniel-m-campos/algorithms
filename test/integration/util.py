@@ -1,6 +1,11 @@
+import os
 from collections import defaultdict
 from itertools import chain
 from typing import List, Tuple, Dict, Set
+
+
+def resource_directory():
+    return f"{os.path.dirname(os.path.abspath(__file__))}/resources"
 
 
 def get_tuples(filename: str, skip_first=False, num_type=int) -> List[Tuple]:

@@ -2,7 +2,9 @@ from collections import defaultdict
 from unittest import TestCase
 
 import dijkstra
+from test.integration import util
 
+RESOURCES = util.resource_directory()
 BIG_GRAPH_LEN = 200
 
 
@@ -31,7 +33,7 @@ def compute(start, ends, graph, distances):
 
 class TestBigGraph(TestCase):
     def test_shortest_paths_1(self):
-        graph, distances = get_data("../../../input_random_2_4.txt")
+        graph, distances = get_data(f"{RESOURCES}/input_random_2_4.txt")
         ends = [7, 37, 59, 82, 99, 115, 133, 165, 188, 197]
         start = 1
         actual = compute(start, ends, graph, distances)
@@ -39,7 +41,7 @@ class TestBigGraph(TestCase):
         self.assertEqual(actual, expected)
 
     def test_shortest_paths_2(self):
-        graph, distances = get_data("../../../dijkstraData.txt")
+        graph, distances = get_data(f"{RESOURCES}/dijkstraData.txt")
         ends = [7, 37, 59, 82, 99, 115, 133, 165, 188, 197]
         start = 1
         print(compute(start, ends, graph, distances))
