@@ -103,9 +103,13 @@ def bellman_ford(
 Coordinate = namedtuple("Coordinate", ["x", "y"])
 
 
+def squared_distance(c1: Coordinate, c2: Coordinate):
+    return sum(pow(x[0] - x[1], 2) for x in zip(c1, c2))
+
+
 @lru_cache()
 def distance(c1: Coordinate, c2: Coordinate):
-    return math.sqrt(sum(pow(x[0] - x[1], 2) for x in zip(c1, c2)))
+    return math.sqrt(squared_distance(c1, c2))
 
 
 def encode(n: int, subset: List[int]):
