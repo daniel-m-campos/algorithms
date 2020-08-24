@@ -1,2 +1,2 @@
-# Graph Algos
-Work on Coursera: Graph Search, Shortest Paths, and Data Structures
+# Algorithms
+Assignment solutions for Tim Roughgarden's four algorithm courses
