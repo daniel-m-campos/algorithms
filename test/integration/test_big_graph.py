@@ -30,6 +30,7 @@ def test_size():
 def test_big_scc():
     def main():
         scc = graphs.find_scc(BIG_GRAPH, T_BIG_GRAPH)
+        scc = graphs.leader_counts(scc)
         top_5 = scc.most_common(5)
         print(top_5)
         print(",".join(str(t[1]) for t in top_5))

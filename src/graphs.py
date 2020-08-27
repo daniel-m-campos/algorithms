@@ -101,8 +101,11 @@ def find_scc(graph, t_graph=None):
         t_graph = transpose(graph)
     result = recursive_depth_first_search(t_graph)
     order = result["topological_sort"]
-    result2 = recursive_depth_first_search(graph, node_order=order)
-    return Counter(result2["leaders"].values())
+    return recursive_depth_first_search(graph, node_order=order)
+
+
+def leader_counts(result):
+    return Counter(result["leaders"].values())
 
 
 def sorted_scc(scc_result):

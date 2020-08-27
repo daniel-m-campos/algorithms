@@ -37,5 +37,6 @@ def test_morning_topological_sort():
 def test_scc(input, expected):
     test = graphs.to_graph(input)
     result = graphs.find_scc(test)
+    result = graphs.leader_counts(result)
     actual = graphs.sorted_scc(result)
     assert actual == expected
