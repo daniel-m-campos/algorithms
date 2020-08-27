@@ -1,6 +1,6 @@
-from collections import defaultdict, Counter
 import math
 import sys
+from collections import defaultdict, Counter
 
 sys.setrecursionlimit(10 ** 6)
 
@@ -67,7 +67,7 @@ def iterative_depth_first_search(graph, increment_finish_time=True, node_order=N
 def recursive_depth_first_search(graph, node_order=None):
     def visit(node, leader):
         nonlocal start_time
-        nonlocal finsh_time
+        nonlocal finish_time
         visited[node] = True
         leaders[node] = leader
         start_time += 1
@@ -75,11 +75,11 @@ def recursive_depth_first_search(graph, node_order=None):
         for adjacent in graph[node]:
             if not visited[adjacent]:
                 visit(adjacent, leader)
-        finsh_time += 1
-        finish_times[node] = finsh_time
+        finish_time += 1
+        finish_times[node] = finish_time
 
     start_time = 0
-    finsh_time = 0
+    finish_time = 0
     visited = {}
     start_times = {}
     finish_times = {}
