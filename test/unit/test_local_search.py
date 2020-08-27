@@ -62,5 +62,5 @@ def test_create_graph(num_variables, constraints, expected):
     ],
 )
 def test_two_sat_solver(num_variables, constraints, expected):
-    actual = ls.two_sat_solver(num_variables, constraints)
+    actual = ls.two_sat_checker(num_variables, constraints)
     assert actual == expected

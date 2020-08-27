@@ -21,5 +21,5 @@ RESOURCES = util.resource_directory()
 )
 def test_two_sat_solver(filename, expected):
     constraints, num_variables = util.read_edges(f"{RESOURCES}/{filename}")
-    actual = ls.two_sat_solver(num_variables, constraints)
+    actual = ls.two_sat_checker(num_variables, constraints)
     assert actual == expected

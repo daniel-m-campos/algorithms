@@ -28,8 +28,8 @@ def implication_graph(
     return graph
 
 
-def two_sat_solver(num_variables: int, constraints: List[Tuple[int, int]]):
-    """2-Sat solver SCC algorithm"""
+def two_sat_checker(num_variables: int, constraints: List[Tuple[int, int]]):
+    """2-Sat SCC algorithm"""
     graph = implication_graph(num_variables, constraints)
     scc = gs.find_scc(graph)
     return not any(k == -v for k, v in scc["leaders"].items())
