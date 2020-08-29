@@ -1,7 +1,7 @@
 from collections import defaultdict
 from unittest import TestCase
 
-import dijkstra
+from algorithms import dijkstra
 from test.integration import util
 
 RESOURCES = util.resource_directory()

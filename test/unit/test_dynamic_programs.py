@@ -1,6 +1,6 @@
 import pytest
 
-import dynamic_programs as dp
+from algorithms import dynamic_programs as dp
 
 
 def test_four_vertex_mwis():

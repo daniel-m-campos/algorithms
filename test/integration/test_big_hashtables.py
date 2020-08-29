@@ -4,7 +4,7 @@ import pstats
 
 import pytest
 
-import hashtables
+from algorithms import hashtables
 from test.integration import util
 
 RESOURCES = util.resource_directory()

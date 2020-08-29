@@ -1,6 +1,6 @@
 import pytest
 
-import quicksort as qs
+from algorithms import quicksort as qs
 from test.integration import util
 
 RESOURCES = util.resource_directory()

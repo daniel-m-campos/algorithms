@@ -1,6 +1,6 @@
 from typing import List, Tuple, Dict, Set
 
-import graphs as gs
+from algorithms import graphs as gs
 
 
 def is_satisfied(constraint: Tuple[int, int], solution: List[bool]) -> bool:

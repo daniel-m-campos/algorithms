@@ -1,6 +1,6 @@
 import pytest
 
-import graphs
+from algorithms import graphs
 
 
 def test_morning_topological_sort():

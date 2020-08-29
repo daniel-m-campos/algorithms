@@ -1,8 +1,8 @@
 import math
 from typing import List, Tuple, Union, Dict
 
-from dijkstra import shortest_distance_using_heaps
-from dynamic_programs import bellman_ford
+from algorithms.dijkstra import shortest_distance_using_heaps
+from algorithms.dynamic_programs import bellman_ford
 
 
 def johnson(

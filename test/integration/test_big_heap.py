@@ -1,4 +1,4 @@
-import heaps
+from algorithms import heaps
 from test.integration import util
 
 RESOURCES = util.resource_directory()

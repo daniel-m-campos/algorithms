@@ -2,7 +2,7 @@ import random
 
 import pytest
 
-import quicksort
+from algorithms import quicksort
 
 
 @pytest.mark.parametrize(

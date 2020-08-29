@@ -1,7 +1,6 @@
 import pytest
 
-import dynamic_programs as dp
-import heuristics
+from algorithms import heuristics, dynamic_programs as dp
 from test.integration import util
 
 RESOURCES = util.resource_directory()

@@ -1,4 +1,4 @@
-import clusters
+from algorithms import clusters
 
 
 def test_initialized_find():

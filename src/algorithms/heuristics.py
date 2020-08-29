@@ -1,7 +1,7 @@
 import math
 from typing import List
 
-import dynamic_programs as dp
+from algorithms import dynamic_programs as dp
 
 
 def tsp(coordinates: List[dp.Coordinate]) -> float:

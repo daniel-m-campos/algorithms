@@ -1,6 +1,6 @@
 import pytest
 
-import local_search as ls
+from algorithms import local_search as ls
 from test.integration import util
 
 RESOURCES = util.resource_directory()

@@ -1,6 +1,6 @@
 import pytest
 
-import dynamic_programs as dp
+from algorithms import dynamic_programs as dp
 from test.integration import util
 
 RESOURCES = util.resource_directory()

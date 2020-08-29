@@ -1,6 +1,6 @@
 import pytest
 
-import huffman
+from algorithms import huffman
 from test.integration import util
 
 RESOURCES = util.resource_directory()

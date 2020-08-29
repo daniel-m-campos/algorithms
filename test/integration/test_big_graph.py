@@ -1,6 +1,6 @@
 import threading
 
-import graphs
+from algorithms import graphs
 from test.integration import util
 
 threading.stack_size(67108864)

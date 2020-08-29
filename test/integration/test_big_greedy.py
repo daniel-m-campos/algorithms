@@ -1,4 +1,4 @@
-import greedy
+from algorithms import greedy
 from test.integration import util
 
 RESOURCES = util.resource_directory()

@@ -1,6 +1,6 @@
 import pytest
 
-import greedy
+from algorithms import greedy
 
 
 @pytest.mark.parametrize(

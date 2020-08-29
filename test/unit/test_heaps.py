@@ -2,7 +2,7 @@ import random
 
 import pytest
 
-import heaps
+from algorithms import heaps
 
 
 @pytest.mark.parametrize("number", [8, 11])

@@ -1,4 +1,4 @@
-import huffman
+from algorithms import huffman
 
 
 def test_four_symbols():

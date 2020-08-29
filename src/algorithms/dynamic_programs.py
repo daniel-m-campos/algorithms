@@ -5,7 +5,7 @@ from functools import lru_cache
 from itertools import combinations
 from typing import List, Tuple, Union, Dict
 
-import graphs
+from algorithms import graphs
 
 sys.setrecursionlimit(10 ** 6)
 

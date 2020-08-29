@@ -1,6 +1,6 @@
 import pytest
 
-import local_search as ls
+from algorithms import local_search as ls
 
 
 @pytest.mark.parametrize(

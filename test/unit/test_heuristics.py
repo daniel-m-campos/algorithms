@@ -1,5 +1,4 @@
-import dynamic_programs as dp
-import heuristics as hs
+from algorithms import heuristics as hs, dynamic_programs as dp
 
 
 def test_tsp():

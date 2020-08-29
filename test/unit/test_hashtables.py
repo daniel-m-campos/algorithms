@@ -1,6 +1,6 @@
 import pytest
 
-import hashtables
+from algorithms import hashtables
 
 
 @pytest.mark.parametrize(

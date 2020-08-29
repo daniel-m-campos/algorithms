@@ -1,6 +1,6 @@
 import pytest
 
-from all_pairs_shortest_paths import johnson
+from algorithms.all_pairs_shortest_paths import johnson
 from test.integration import util
 
 RESOURCES = util.resource_directory()

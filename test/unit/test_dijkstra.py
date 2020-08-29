@@ -1,4 +1,4 @@
-import dijkstra
+from algorithms import dijkstra
 
 
 def test_shortest_distance():

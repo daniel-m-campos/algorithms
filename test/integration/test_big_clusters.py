@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-import clusters
+from algorithms import clusters
 from test.integration import util
 from test.integration.util import get_edges_with_costs, to_graph, get_graph
 
